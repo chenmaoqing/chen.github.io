@@ -559,7 +559,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-24 11:01:06" itemprop="dateModified" datetime="2018-07-24T11:01:06+08:00">2018-07-24</time>
+                <time title="Modified: 2018-07-24 12:42:20" itemprop="dateModified" datetime="2018-07-24T12:42:20+08:00">2018-07-24</time>
               
             
           </span>
@@ -608,9 +608,16 @@
 方法二：
     &lt;img src=&quot;images/img/1.jpg&quot; width=256 height=256 /&gt;
 </code></pre><h3 id="图片引用方法一实例"><a href="#图片引用方法一实例" class="headerlink" title="图片引用方法一实例"></a>图片引用方法一实例</h3><pre><code>此时img文件夹和当前文档在同一级目录下
-</code></pre><p><img src="/img/1.jpg" alt=""><br><img src="/img/2.jpg" alt=""></p>
-<h3 id="图片引用方法二实例，可以控制图片大小"><a href="#图片引用方法二实例，可以控制图片大小" class="headerlink" title="图片引用方法二实例，可以控制图片大小"></a>图片引用方法二实例，可以控制图片大小</h3><p><img src="images/img/1.jpg" width="256" height="256"><br><img src="images/img/2.jpg" width="256" height="256"></p>
-<h3 id="让图片居中的方法，使用div标签"><a href="#让图片居中的方法，使用div标签" class="headerlink" title="让图片居中的方法，使用div标签"></a>让图片居中的方法，使用div标签</h3><div align="center"><br><img src="images/img/1.jpg" width="256" height="256"><br><br></div>
+![1](/images/img/1.jpg)
+![2](/images/img/2.jpg)
+</code></pre><p><img src="/images/img/1.jpg" alt="1"><br><img src="/images/img/2.jpg" alt="2"></p>
+<h3 id="图片引用方法二实例，可以控制图片大小"><a href="#图片引用方法二实例，可以控制图片大小" class="headerlink" title="图片引用方法二实例，可以控制图片大小"></a>图片引用方法二实例，可以控制图片大小</h3><pre><code>&lt;img src=&quot;/images/img/1.jpg&quot; width=256 height=256 /&gt;
+&lt;img src=&quot;/images/img/2.jpg&quot; width=256 height=256 /&gt;
+</code></pre><p><img src="/images/img/1.jpg" width="256" height="256"><br><img src="/images/img/2.jpg" width="256" height="256"></p>
+<h3 id="让图片居中的方法，使用div标签"><a href="#让图片居中的方法，使用div标签" class="headerlink" title="让图片居中的方法，使用div标签"></a>让图片居中的方法，使用div标签</h3><pre><code>&lt;div align=center&gt;
+&lt;img src=&quot;/images/img/1.jpg&quot; width=256 height=256 /&gt;
+&lt;/div&gt;
+</code></pre><div align="center"><br><img src="/images/img/1.jpg" width="256" height="256"><br></div>
 
 <h2 id="斜体"><a href="#斜体" class="headerlink" title="- 斜体"></a>- 斜体</h2><pre><code>- 用左右各一个 *的方式包裹住文字就是斜体的语法
 </code></pre><h2 id="粗体"><a href="#粗体" class="headerlink" title="- 粗体"></a>- 粗体</h2><pre><code>- 用左右各两个**的方式包裹住文字就是粗体的语法
@@ -647,7 +654,6 @@
       &lt;/tr&gt;
     &lt;/table&gt;
 </code></pre><h1 id="html方式实现表格实例"><a href="#html方式实现表格实例" class="headerlink" title="html方式实现表格实例"></a>html方式实现表格实例</h1><table><br>  <tr><br>    <th width="10%," bgcolor="yellow">参数</th><br>    <th width="40%," bgcolor="yellow">详细解释</th><br>    <th width="50%," bgcolor="yellow">备注</th><br>  </tr><br>  <tr><br>    <td bgcolor="#eeeeee"> -l </td><br>    <td> use a long listing format  </td><br>    <td> 以长列表方式显示（显示出文件/文件夹详细信息）  </td><br>  </tr><br>  <tr><br>    <td bgcolor="#00FF00">-t </td><br>    <td> sort by modification time </td><br>    <td> 按照修改时间排序（默认最近被修改的文件/文件夹排在最前面） </td><br>  </tr><tr><br>    <td bgcolor="rgb(0,10,0)">-r </td><br>    <td> reverse order while sorting </td><br>    <td>  逆序排列 </td><br>  </tr><br></table>
-
           
         
       

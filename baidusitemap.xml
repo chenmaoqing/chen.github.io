@@ -3,6 +3,219 @@
 
 
     
+  <url>
+    <loc>http://www.python100.com/2018/07/24/cq%E5%B9%B3%E5%8F%B0%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E6%AD%A5%E9%AA%A4/</loc>
+    <lastmod>2018-07-24T10:26:36.891Z</lastmod>
+    <data>
+        <display>
+        <title>mysql数据库迁移如mongo数据库步骤</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+        <tag>mysql迁移</tag>
+         
+         
+           
+             
+              <breadCrumb title="mongo" url="http://www.python100.com/categories/mongo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/Mongo%E5%AE%89%E8%A3%85%E5%8F%8A%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</loc>
+    <lastmod>2018-07-24T10:24:28.399Z</lastmod>
+    <data>
+        <display>
+        <title> mongo安装和使用</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="mongo" url="http://www.python100.com/categories/mongo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/centos7%E4%B8%8A%E5%AE%89%E8%A3%85zfs%E5%92%8Cgluster/</loc>
+    <lastmod>2018-07-24T10:22:25.110Z</lastmod>
+    <data>
+        <display>
+        <title>zfs和gluster安装</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+        <tag>zfs</tag>
+         
+         
+           
+             
+              <breadCrumb title="zfs" url="http://www.python100.com/categories/zfs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/docker_registry/</loc>
+    <lastmod>2018-07-24T10:20:14.325Z</lastmod>
+    <data>
+        <display>
+        <title>docker设置本地仓库</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="docker" url="http://www.python100.com/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/hexo%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2018-07-24T10:19:15.999Z</lastmod>
+    <data>
+        <display>
+        <title>hexo搭建个人博客</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="hexo" url="http://www.python100.com/categories/hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/mongodb%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/</loc>
+    <lastmod>2018-07-24T10:18:40.104Z</lastmod>
+    <data>
+        <display>
+        <title>mongodb的优缺点</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/mongo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-07-24T10:18:23.348Z</lastmod>
+    <data>
+        <display>
+        <title>mongo常用操作</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="mongo" url="http://www.python100.com/categories/mongo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/mongo%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</loc>
+    <lastmod>2018-07-24T10:18:06.163Z</lastmod>
+    <data>
+        <display>
+        <title>mongodump与mongorestore</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="mogno" url="http://www.python100.com/categories/mogno/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/%E5%AE%89%E8%A3%85kvm/</loc>
+    <lastmod>2018-07-24T10:17:24.624Z</lastmod>
+    <data>
+        <display>
+        <title>kvm安装</title>
+        <pubTime>2018-07-24T10:09:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/shell%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-07-24T10:17:01.035Z</lastmod>
+    <data>
+        <display>
+        <title>根据PID查看进程启动路径</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/%E5%85%B3%E4%BA%8Evirsh%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-07-24T10:16:15.780Z</lastmod>
+    <data>
+        <display>
+        <title>virsh相关命令</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="kvm" url="http://www.python100.com/categories/kvm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.python100.com/2018/07/24/%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%89%A9%E5%AE%B9/</loc>
+    <lastmod>2018-07-24T10:09:02.326Z</lastmod>
+    <data>
+        <display>
+        <title>linux系统根目录扩容</title>
+        <pubTime>2018-07-24T10:06:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="根目录扩容" url="http://www.python100.com/categories/%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%89%A9%E5%AE%B9/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
   <url>
@@ -134,22 +347,5 @@
 
     
     
-    
-  <url>
-    <loc>http://www.python100.com/2018/06/21/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-06-20T19:22:31.996Z</lastmod>
-    <data>
-        <display>
-        <title>python笔记</title>
-        <pubTime>2018-06-20T18:36:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
 </urlset>

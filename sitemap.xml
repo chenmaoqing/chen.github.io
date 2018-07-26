@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.python100.com/About/index.html</loc>
+    
+    <lastmod>2018-07-26T06:43:50.284Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.python100.com/2018/07/24/mongo%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</loc>
     
     <lastmod>2018-07-26T06:01:53.448Z</lastmod>
@@ -117,13 +124,6 @@
     <loc>http://www.python100.com/2018/07/24/%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%89%A9%E5%AE%B9/</loc>
     
     <lastmod>2018-07-24T10:09:02.326Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.python100.com/About/index.html</loc>
-    
-    <lastmod>2018-07-24T09:42:57.490Z</lastmod>
     
   </url>
   

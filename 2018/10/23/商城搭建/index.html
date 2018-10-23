@@ -1,0 +1,920 @@
+<!-- build time:Tue Oct 23 2018 14:34:05 GMT+0800 (CST) --><!DOCTYPE html><html class="theme-next mist use-motion" lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0"><link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"6.3.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="环境[root@w1 keepalived-2.0.7]# cat /etc/redhat-release  CentOS Linux release 7.5.1804 (Core)  [root@w1 keepalived-2.0.7]# uname -a Linux w1 3.10.0-862.el7.x86_64 #1 SMP Fri Apr 20 16:44:24 UTC 2018 x86"><meta property="og:type" content="article"><meta property="og:title" content="商城搭建"><meta property="og:url" content="http://www.python100.com/2018/10/23/商城搭建/index.html"><meta property="og:site_name" content="乘风破浪"><meta property="og:description" content="环境[root@w1 keepalived-2.0.7]# cat /etc/redhat-release  CentOS Linux release 7.5.1804 (Core)  [root@w1 keepalived-2.0.7]# uname -a Linux w1 3.10.0-862.el7.x86_64 #1 SMP Fri Apr 20 16:44:24 UTC 2018 x86"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2018-10-23T06:10:07.686Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="商城搭建"><meta name="twitter:description" content="环境[root@w1 keepalived-2.0.7]# cat /etc/redhat-release  CentOS Linux release 7.5.1804 (Core)  [root@w1 keepalived-2.0.7]# uname -a Linux w1 3.10.0-862.el7.x86_64 #1 SMP Fri Apr 20 16:44:24 UTC 2018 x86"><link rel="alternate" href="/atom.xml" title="乘风破浪" type="application/atom+xml"><link rel="canonical" href="http://www.python100.com/2018/10/23/商城搭建/"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>商城搭建 | 乘风破浪</title><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://chenmaoqing.github.io" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA;color:#fff;position:absolute;top:0;border:0;right:0" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">乘风破浪</span> <span class="logo-line-after"><i></i></span></a></div></div><div class="site-nav-toggle"><button aria-label="切换导航栏"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-主页"></i><br>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-标签"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-分类"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-归档"></i><br>归档</a></li><li class="menu-item menu-item-about"><a href="/About/" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i><br>关于</a></li><li class="menu-item menu-item-commonweal"><a href="/404公益/" rel="section"><i class="menu-item-icon fa fa-fw fa-公益404"></i><br>公益 404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://www.python100.com/2018/10/23/商城搭建/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="chen"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="乘风破浪"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">商城搭建</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2018-10-23 14:09:37 / 修改时间：14:10:07" itemprop="dateCreated datePublished" datetime="2018-10-23T14:09:37+08:00">2018-10-23</time></span></div></header><div class="post-body" itemprop="articleBody"><p>环境</p><pre><code>[root@w1 keepalived-2.0.7]# cat /etc/redhat-release 
+CentOS Linux release 7.5.1804 (Core) 
+[root@w1 keepalived-2.0.7]# uname -a
+Linux w1 3.10.0-862.el7.x86_64 #1 SMP Fri Apr 20 16:44:24 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+#关闭selinux和iptables
+</code></pre><p>安装依赖</p><pre><code>yum -y install libxml2 libxml2-devel gcc gcc-c++  zlib-devel openssl openssl-devel libcurl-devel libcurl  ncurses  libjpeg-devel libpng  libpng-devel  freetype freetype-devel openldap openldap-devel.x86_64 zip unzip wget GeoIP GeoIP-data GeoIP-devel autoconf autoconf
+</code></pre><p>安装tengine</p><pre><code>#!/bin/bash
+#安装tengine脚本
+BASEDIR=/opt/src  #下载的资源保存目录
+SOFTDIR=/opt/webserver      #软件安装目录
+if [ ! -d $BASEDIR ];then
+mkdir -p $BASEDIR
+fi
+if [ ! -d $SOFTDIR ];then
+mkdir -p $SOFTDIR
+fi
+cd $BASEDIR
+#创建用户www
+if [ &apos;grep &quot;www&quot; /etc/passwd | wc -l&apos; ]; then
+groupadd www &gt;/dev/null 2&gt;&amp;1
+useradd -s /sbin/nologin -M -g www www  &gt;/dev/null 2&gt;&amp;1
+fi
+#判断目录/var/lib/nginx/client/是否存在，不存在则创建
+if [ ! -d /var/lib/nginx/client/ ];then
+mkdir -p /var/lib/nginx/client/
+fi
+#判断目录/var/lib/nginx/client/是否存在，不存在则创建
+if [ ! -d /data/proxy/proxy_temp_dir ];then
+mkdir -p /data/proxy/proxy_temp_dir 
+fi
+#下载相关的模块，并解压
+#############LuaJIT-2.0.5###########
+if [ ! -f LuaJIT-2.0.5.tar.gz ] ;then
+wget -c http://luajit.org/download/LuaJIT-2.0.5.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf LuaJIT-2.0.5.tar.gz &gt;/dev/null 2&gt;&amp;1
+cd LuaJIT-2.0.5
+#判断make是否出错，如果出错，则退出脚本
+make &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;make failed ,please check it out!&quot;
+exit 1
+fi
+#判断make install是否出错，如果出错退出脚本
+make install &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;make failed ,please check it out!&quot;
+exit 1
+fi
+export LUAJIT_LIB=/usr/local/lib
+export LUAJIT_INC=/usr/local/include/luajit-2.0
+if [ ! -d /opt/src ];then
+mkdir -p /opt/src
+fi
+cd $BASEDIR
+#############v0.3.1rc1###########
+if [ ! -f v0.3.1rc1.tar.gz ] ;then
+wget -c https://github.com/simpl/ngx_devel_kit/archive/v0.3.1rc1.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf v0.3.1rc1.tar.gz &gt;/dev/null 2&gt;&amp;1
+#############v0.10.12rc2###########
+if [ ! -f v0.10.12rc2.tar.gz ];then
+wget -c https://github.com/openresty/lua-nginx-module/archive/v0.10.12rc2.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf v0.10.12rc2.tar.gz
+#############zlib-1.2.11###########
+if [ ! -f zlib-1.2.11.tar.gz ];then
+wget -c  http://www.zlib.net/zlib-1.2.11.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf zlib-1.2.11.tar.gz &gt;/dev/null 2&gt;&amp;1
+#安装epel 
+rpm -ivh   http://ftp.linux.ncsu.edu/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm &gt;/dev/null 2&gt;&amp;1
+#############pcre-8.37###########
+if [ ! -f pcre-8.37.tar.gz ];then
+wget -c http://ftp.pcre.org/pub/pcre/pcre-8.37.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+tar -xf pcre-8.37.tar.gz &gt;/dev/null 2&gt;&amp;1
+fi
+cd pcre-8.37
+./configure &gt;/dev/null 2&gt;&amp;1
+#判断configure是否出现问题
+if [ $? -ne 0 ];then
+echo &quot;configure failed ,please check it out!&quot;
+exit 1
+fi
+#判断make是否出错，如果出错，则退出脚本
+make &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;make failed ,please check it out!&quot;
+exit 1
+fi
+#判断make install是否出错，如果出错退出脚本
+make install &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;make failed ,please check it out!&quot;
+exit 1
+fi
+cd $BASEDIR
+#############openssl1.0.2###########
+if [ ! -f  openssl-1.0.2c.tar.gz ];then
+wget -c  https://ftp.openssl.org/source/old/1.0.2/openssl-1.0.2c.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf openssl-1.0.2c.tar.gz &gt;/dev/null 2&gt;&amp;1
+##################master#############
+if [ ! -f master ];then
+wget -c https://codeload.github.com/gnosek/nginx-upstream-fair/zip/master &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+unzip master &gt;/dev/null 2&gt;&amp;1
+##############2.3.tar.gz##############
+if [ ! -f  2.3.tar.gz ];then
+wget -c https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf 2.3.tar.gz &gt;/dev/null 2&gt;&amp;1
+##############tengine-2.2.2##############
+if [ ! -f tengine-2.2.2.tar.gz ];then
+wget -c http://tengine.taobao.org/download/tengine-2.2.2.tar.gz &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;file download failed , please check out &quot;
+exit 1
+fi
+fi
+tar -xf tengine-2.2.2.tar.gz &gt;/dev/null 2&gt;&amp;1
+cd $BASEDIR/tengine-2.2.2
+./configure \
+--prefix=$SOFTDIR/nginx \
+--conf-path=$SOFTDIR/nginx/etc/nginx.conf \
+--error-log-path=$SOFTDIR/nginx/logs/error.log \
+--pid-path=/var/run/nginx/nginx.pid  \
+--lock-path=/var/lock/nginx.lock \
+--user=www \
+--group=www \
+--with-http_ssl_module \
+--with-http_flv_module \
+--with-http_stub_status_module \
+--with-http_gzip_static_module \
+--with-http_realip_module \
+--with-http_concat_module \
+--with-http_geoip_module \
+--http-log-path=$SOFTDIR/nginx/logs/access.log \
+--http-client-body-temp-path=/var/lib/nginx/client/ \
+--http-proxy-temp-path=/var/lib/nginx/proxy/ \
+--http-fastcgi-temp-path=/var/lib/nginx/fcgi/  \
+--http-uwsgi-temp-path=/var/lib/nginx/uwsgi/  \
+--http-scgi-temp-path=/var/lib/nginx/scgi/  \
+--with-openssl=/opt/src/openssl-1.0.2c \
+--with-zlib=$BASEDIR/zlib-1.2.11 \
+--add-module=$BASEDIR/nginx-upstream-fair-master \
+--add-module=$BASEDIR/ngx_cache_purge-2.3 \
+--add-module=$BASEDIR/lua-nginx-module-0.10.12rc2 \
+--add-module=$BASEDIR/ngx_devel_kit-0.3.1rc1 \
+--with-pcre=$BASEDIR/pcre-8.37  &gt;/dev/null 2&gt;&amp;1
+#判断configure是否出现问题
+if [ $? -ne 0 ];then
+echo &quot;configure failed ,please check it out!&quot;
+exit 1
+fi
+#判断make是否出错，如果出错，则退出脚本
+make  &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;make failed ,please check it out!&quot;
+exit 1
+fi
+#判断make install是否出错，如果出错退出脚本
+make install &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+echo &quot;make failed ,please check it out!&quot;
+exit 1
+fi
+#建立软连接
+if [ -L /lib64/libluajit-5.1.so.2 ] ;then
+rm -f /lib64/libluajit-5.1.so.2
+fi
+ln  -s /usr/local/lib/libluajit-5.1.so.2  /lib64/libluajit-5.1.so.2 &gt;/dev/null 2&gt;&amp;1
+echo &quot; ------------Success install tengine ------------------------&quot;
+</code></pre><p>nginx.conf配置</p><pre><code>#nginx.conf  配置
+user www www;
+worker_rlimit_nofile 65535;
+error_log   logs/error.log;
+pid     /var/run/nginx.pid;
+
+events {
+    use epoll;
+    worker_connections 65535;
+    #设置nginx收到一个新连接通知后接受尽可能多的连接
+    multi_accept on ;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    #设置日志格式
+    log_format  access_ws  &apos;$http_Cdn_Src_Ip - $remote_addr - $remote_user [$time_local] &quot;$request_method http://$http_host$uri?$query_string $server_protocol&quot; &apos;
+            &apos;$status $body_bytes_sent &quot;$http_referer&quot; $request_time $upstream_addr $upstream_response_time &quot;$http_user_agent&quot;&apos;;
+    log_format  access  &apos;$http_x_forwarded_for - $remote_addr - $remote_user [$time_local] &quot;$request_method http://$http_host$uri?$query_string $server_protocol&quot; &apos;
+            &apos;$status $body_bytes_sent &quot;$http_referer&quot; $request_time $upstream_addr $upstream_response_time &quot;$http_user_agent&quot;&apos;;
+    log_format access_json &apos;{&quot;@timestamp&quot;:&quot;$time_iso8601&quot;,&apos;
+    &apos;&quot;host&quot;:&quot;$server_addr&quot;,&apos;
+    &apos;&quot;clientip&quot;:&quot;$http_x_forwarded_for&quot;,&apos;
+    &apos;&quot;size&quot;:$body_bytes_sent,&apos;
+    &apos;&quot;responsetime&quot;:$request_time,&apos;
+    &apos;&quot;upstreamtime&quot;:&quot;$upstream_response_time&quot;,&apos;
+    &apos;&quot;upstreamhost&quot;:&quot;$upstream_addr&quot;,&apos;
+    &apos;&quot;http_host&quot;:&quot;$host&quot;,&apos;
+    &apos;&quot;url&quot;:&quot;$uri&quot;,&apos;
+    &apos;&quot;domain&quot;:&quot;$host&quot;,&apos;
+    &apos;&quot;xff&quot;:&quot;$http_x_forwarded_for&quot;,&apos;
+    &apos;&quot;referer&quot;:&quot;$http_referer&quot;,&apos;
+    &apos;&quot;agent&quot;:&quot;$http_user_agent&quot;,&apos;
+    &apos;&quot;method&quot;:&quot;$request_method&quot;,&apos;
+    &apos;&quot;status&quot;:&quot;$status&quot;}&apos;;
+    #设置总体的http的log
+    access_log  logs/access.log;
+
+    sendfile        on;
+    tcp_nopush     on;
+    #开启异步
+    tcp_nodelay on ;
+    #开启错误页面跳转，跳转在server里面配置
+    fastcgi_intercept_errors on;
+    client_header_buffer_size 4k;
+    large_client_header_buffers 4 16k;
+    #隐藏版本号
+    server_tokens off;
+    #头伪装 仅限于淘宝的tengine
+    server_tag Microsoft-IIS/8.5;
+    #限制并发连接
+    limit_req_zone $http_x_forwarded_for zone=user:30m rate=30r/s;
+    #客户端链接超时时间
+    keepalive_timeout  65;
+    gzip  on;
+    gzip_min_length  1k;
+    gzip_buffers     4 16k;
+    gzip_http_version 1.0;
+    #指定压缩级别
+    gzip_comp_level 9;
+    #指定压缩类型
+    gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+    #加vary头
+    gzip_vary on;
+
+    #引入虚拟主机
+    include vhost.d/*.conf;
+    #引入代理主机
+    include proxy.d/*.conf;
+    # include /home/wwwroot/.htaccess;
+
+    client_header_timeout 30;
+    client_body_timeout 30;
+}
+</code></pre><p>虚拟主机配置</p><pre><code>在nginx.onf的同级目录下创建虚拟主机配置目录vhosts，创建web1.conf  web2.conf  zabbix.conf
+以不同端口配置虚拟主机
+[root@www1 vhosts]# cat /opt/webserver/etc/vhost.d/web1.conf 
+server {
+    listen 80;
+    server_name  vcom.shop.mobikylin.com;
+
+    listen 443;
+        ssl_certificate   /root/.acme.sh/vcom.shop.mobikylin.com/vcom.shop.mobikylin.com.cer;
+        ssl_certificate_key  /root/.acme.sh/vcom.shop.mobikylin.com/vcom.shop.mobikylin.com.key;
+        ssl_session_timeout 5m;
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers on;
+
+        if ($server_port = 80 ) {
+                return 301 https://$host$request_uri;
+        }
+
+          location  / {
+            proxy_pass http://vcom_server;
+            proxy_set_header X-Real-IP $remote_addr;
+            access_log  logs/shop.access.log;
+            error_log  logs/shop.error.log;
+        }    
+
+        location /status
+        {
+            stub_status on;
+            access_log off;
+            allow 172.16.17.229;
+            allow 127.0.0.1;
+            deny all;
+        }
+    }
+</code></pre><p>代理主机配置</p><pre><code>upstream vcom_server    {
+        server 172.16.17.227:80 weight=4 max_fails=2 fail_timeout=30s;
+        server 172.16.17.228:80 weight=4 max_fails=2 fail_timeout=30s;
+}
+</code></pre><p>nginx启动脚本</p><pre><code>#! /bin/bash
+# Source function library.
+. /etc/init.d/functions
+# Progran name
+prog=&quot;nginx&quot;
+start() {
+      echo -n $&quot;Starting $prog: &quot;
+        if [ -e /var/lock/nginx.lock ]; then
+            if [ -e /var/run/nginx.pid ] &amp;&amp; [ -e /proc/`cat /var/run/nginx.pid ` ]; then
+            echo -n $&quot;cannot start $prog: nginx is already running.&quot;
+            failure $&quot;cannot start $prog: nginx is already running.&quot;
+            echo
+            return 1
+        fi
+    fi
+    /opt/webserver/nginx/sbin/nginx
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] &amp;&amp; success $&quot;$prog start&quot; || failure $&quot;$prog start&quot;
+    [ $RETVAL -eq 0 ] &amp;&amp; touch /var/lock/nginx.lock
+    echo
+    return $RETVAL
+}
+
+stop() {
+    echo -n $&quot;Stopping $prog: &quot;
+    if [ ! -e /var/lock/nginx.lock ] || [ ! -e /var/run/nginx.pid  ]; then
+        echo -n $&quot;cannot stop $prog: nginx is not running.&quot;
+        failure $&quot;cannot stop $prog: nginx is not running.&quot;
+        echo
+        return 1
+    fi
+    PID=`cat /var/run/nginx.pid `
+    if checkpid $PID 2&gt;&amp;1; then
+        # TERM first, then KILL if not dead
+        kill -TERM $PID &gt;/dev/null 2&gt;&amp;1
+        usleep 100000
+        if checkpid $PID &amp;&amp; sleep 1 &amp;&amp; checkpid $PID &amp;&amp; sleep 3 &amp;&amp; checkpid $PID; then
+            kill -KILL $PID &gt;/dev/null 2&gt;&amp;1
+            usleep 100000
+        fi
+    fi
+    checkpid $PID
+    RETVAL=$((! $?))
+    [ $RETVAL -eq 0 ] &amp;&amp; success $&quot;$prog shutdown&quot; || failure $&quot;$prog shutdown&quot;
+    [ $RETVAL -eq 0 ] &amp;&amp; rm -f /var/lock/nginx.lock;
+    echo
+    return $RETVAL
+}
+
+status() {
+    status $prog
+    RETVAL=$?
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $&quot;Reloading $prog: &quot;
+    if [ ! -e /var/lock/nginx.lock ] || [ ! -e /var/run/nginx.pid  ]; then
+        echo -n $&quot;cannot reload $prog: nginx is not running.&quot;
+        failure $&quot;cannot reload $prog: nginx is not running.&quot;
+        echo
+        return 1
+    fi
+    kill -HUP `cat /var/run/nginx.pid ` &gt;/dev/null 2&gt;&amp;1
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] &amp;&amp; success $&quot;$prog reload&quot; || failure $&quot;$prog reload&quot;
+    echo
+    return $RETVAL
+}
+
+case &quot;$1&quot; in
+start)
+    start
+    ;;
+stop)
+    stop
+    ;;
+restart)
+    restart
+    ;;
+reload)
+    reload
+    ;;
+status)
+    status
+    ;;
+link)
+    netstat -n | awk &apos;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&apos;
+    ;;
+ps)
+    ps -ef | grep nginx | wc -l
+    ;;
+condrestart)
+    [ -f /var/lock/nginx.lock ] &amp;&amp; restart || :
+    ;;
+t)
+    /opt/webserver/nginx/sbin/nginx -t 
+    ;;
+configtest)
+       /opt/webserver/nginx/sbin/nginx -t
+      ;;
+ *)
+    echo $&quot;Usage: $0 {start|stop|status|reload|restart|condrestart|configtest|link|ps}&quot;
+    exit 1
+esac
+</code></pre><p>nginx启动脚本设置</p><pre><code>#启动脚本放在/etc/init.d下,添加权限
+chmod +x /etc/init.d/nginx
+sed -i &apos;s/\r//g&apos; /etc/init.d/nginx  
+ln -s /etc/init.d/nginx  /usr/bin
+#启动nginx，两种方式启动
+nginx start    或者    service nginx start 
+</code></pre><p>安装redis主从</p><p>redis安装配置脚本</p><pre><code>#!/bin/bash
+BASEDIR=/opt/src  #下载的资源保存目录
+SOFTDIR=/opt/webserver      #软件安装目录
+#密码和端口根据需要修改
+REDIS_PASS=123qwe 
+REDIS_PORT1=6379
+REDIS_PORT2=6380
+if [ ! -d $BASEDIR ];then
+  mkdir -p $BASEDIR
+fi
+if [ ! -d $SOFTDIR ];then
+  mkdir -p $SOFTDIR
+fi
+REDIS_VERSION=redis-4.0.11
+REDIS_URL=http://download.redis.io/releases/$REDIS_VERSION.tar.gz
+#判断安装的包是否存在，如果指定的SOFTDIR里面不存在相应的包则下载
+cd $BASEDIR
+if [ ! -f $REDIS_VERSION.tar.gz ];then
+    wget $REDIS_URL &gt;/dev/null 2&gt;&amp;1
+    if [ $? -ne 0 ];then
+        echo &quot;file download failed , please check out &quot;
+        exit 1
+    fi
+fi
+if [ -d $REDIS_VERSION ];then
+    rm -rf $REDIS_VERSION
+fi
+tar -xf $REDIS_VERSION.tar.gz &gt;/dev/null 2&gt;&amp;1
+cd $REDIS_VERSION
+make distclean &gt;/dev/null 2&gt;&amp;1
+make &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+    echo &quot; make failed , please check out &quot;
+    exit 1
+fi
+#创建redis的启动脚本目录
+if [  -d $SOFTDIR/redis ];then
+    rm -rf  $SOFTDIR/redis/*    
+fi
+mkdir -p  $SOFTDIR/redis/bin
+mkdir -p  $SOFTDIR/redis/conf
+mkdir -p  $SOFTDIR/redis/logs
+touch $SOFTDIR/redis/logs/$REDIS_PORT1.log 
+touch $SOFTDIR/redis/logs/$REDIS_PORT2.log
+#创建可执行文件
+cp -a $BASEDIR/$REDIS_VERSION/src/redis* /$SOFTDIR/redis/bin
+rm -rf $SOFTDIR/redis/bin/*.o 
+rm -rf $SOFTDIR/redis/bin/*.h
+rm -rf $SOFTDIR/redis/bin/*.c 
+chmod +x $SOFTDIR/redis/bin/*
+rm -rf /usr/bin/redis* 
+ln -s $SOFTDIR/redis/bin/* /usr/bin 
+#创建redis $REDIS_PORT1 端口配置文件，作为主配置文件
+if [ ! -f $SOFTDIR/redis/conf/REDIS_PORT1.conf ];then
+    cp -a $BASEDIR/$REDIS_VERSION/redis.conf    $SOFTDIR/redis/conf/$REDIS_PORT1.conf
+    sed -i &apos;s/daemonize no/daemonize yes/g&apos; $SOFTDIR/redis/conf/$REDIS_PORT1.conf
+    sed -i &apos;s/dbfilename dump.rdb/dbfilename dump&apos;$REDIS_PORT1&apos;.rdb/g&apos; $SOFTDIR/redis/conf/$REDIS_PORT1.conf
+    sed -i &apos;s/# requirepass foobared/requirepass &apos;$REDIS_PASS&apos;/g&apos; $SOFTDIR/redis/conf/$REDIS_PORT1.conf
+    sed -i &apos;s/bind 127.0.0.1/bind 0.0.0.0/g&apos; $SOFTDIR/redis/conf/$REDIS_PORT1.conf
+    sed -i &apos;s/logfile &quot;&quot;/logfile &quot;logs\/&apos;$REDIS_PORT1&apos;.log&quot;/g&apos; $SOFTDIR/redis/conf/$REDIS_PORT1.conf
+fi
+#创建redis $REDIS_PORT2 端口的服务器，做为从服务器
+if [ ! -f $SOFTDIR/redis/conf/REDIS_PORT2.conf ];then
+    cp -a $SOFTDIR/redis/conf/$REDIS_PORT1.conf $SOFTDIR/redis/conf/$REDIS_PORT2.conf
+    sed -i &apos;s/&apos;$REDIS_PORT1&apos;/&apos;$REDIS_PORT2&apos;/g&apos; $SOFTDIR/redis/conf/$REDIS_PORT2.conf
+    echo slaveof 127.0.0.1 $REDIS_PORT1 &gt;&gt;$SOFTDIR/redis/conf/$REDIS_PORT2.conf
+    echo masterauth $REDIS_PASS &gt;&gt; $SOFTDIR/redis/conf/$REDIS_PORT2.conf
+fi
+num=`grep &quot;vm.overcommit_memory = 1&quot; /etc/sysctl.conf |wc -l` 
+if  [ $num -ne 1 ];then
+    echo &quot;vm.overcommit_memory = 1&quot; &gt;&gt;/etc/sysctl.conf
+    sysctl -p &gt;/dev/null 2&gt;&amp;1
+fi
+cd $SOFTDIR/redis/
+./bin/redis-server conf/$REDIS_PORT1.conf &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+    echo $REDIS_PORT1启动失败
+    exit 1
+fi 
+./bin/redis-server conf/$REDIS_PORT2.conf &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+    echo $REDIS_PORT2启动失败
+    exit 1
+fi 
+echo &quot;成功安装并启动redis主从，密码123qwe, 端口主6379，从6380。。。。&quot;
+</code></pre><p>redis报错解决：</p><pre><code>25451:signal-handler (1536400042) Received SIGTERM scheduling shutdown...
+25451:S 08 Sep 17:47:22.227 # User requested shutdown...
+25451:S 08 Sep 17:47:22.228 # Redis is now ready to exit, bye bye...
+25516:C 08 Sep 17:48:24.201 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+25516:C 08 Sep 17:48:24.201 # Redis version=4.0.11, bits=64, commit=00000000, modified=0, pid=25516, just started
+25516:C 08 Sep 17:48:24.201 # Configuration loaded
+25517:S 08 Sep 17:48:24.203 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+25517:S 08 Sep 17:48:24.203 # Server initialized
+25517:S 08 Sep 17:48:24.204 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &apos;vm.overcommit_memory = 1&apos; to /etc/sysctl.conf and then reboot or run the command &apos;sysctl vm.overcommit_memory=1&apos; for this to take effect.
+25517:S 08 Sep 17:48:24.204 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:25.224 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:26.243 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:27.267 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:28.282 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:29.310 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:30.326 # Error condition on socket for SYNC: Connection refused
+25517:S 08 Sep 17:48:31.345 # Error condition on socket for SYNC: Connection refused
+
+解决办法：
+[root@www1 redis]# echo &quot;vm.overcommit_memory = 1&quot; &gt;&gt; /etc/sysctl.conf
+[root@www1 redis]# sysctl vm.overcommit_memory=1
+[root@www1 redis]# echo &quot;1280&quot;&gt; /proc/sys/net/core/somaxconn 
+[root@www1 redis]# echo ulimit -n 65535 &gt;&gt;/etc/profile   
+</code></pre><p>安装php</p><p>php安装脚本</p><pre><code>#!/bin/bash
+BASEDIR=/opt/src  #下载的资源保存目录
+SOFTDIR=/opt/webserver      #软件安装目录
+if [ &apos;grep &quot;www&quot; /etc/passwd | wc -l&apos; ]; then
+    groupadd www  &gt;/dev/null 2&gt;&amp;1
+    useradd -s /sbin/nologin -M -g www www  &gt;/dev/null 2&gt;&amp;1
+fi
+if [ -s /usr/lib/libldap.so ];then
+    ln -s /usr/lib64/libldap.so /usr/lib/ &gt;/dev/null 2&gt;&amp;1
+fi
+if [ ! -d $BASEDIR ];then
+    mkdir -p $BASEDIR
+fi
+if [ ! -d $SOFTDIR ];then
+    mkdir -p $SOFTDIR
+fi
+cd $BASEDIR
+if [ ! -f php-7.2.9.tar.bz2 ] ;then
+    wget http://cn2.php.net/distributions/php-7.2.9.tar.bz2 &gt;/dev/null 2&gt;&amp;1
+    if [ $? -ne 0 ];then
+        echo &quot;download failed ,please check it out!&quot; 
+        exit 1
+    fi
+fi
+tar -xf php-7.2.9.tar.bz2  &gt;/dev/null 2&gt;&amp;1
+cd php-7.2.9
+./configure --prefix=$SOFTDIR/php --exec-prefix=$SOFTDIR/php \
+--sbindir=$SOFTDIR/php/sbin --includedir=$SOFTDIR/php/include \
+--libdir=$SOFTDIR/php/lib/php --mandir=$SOFTDIR/php/php/man \
+--with-config-file-path=$SOFTDIR/php/etc --with-mhash --with-openssl \
+--with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-iconv \
+--with-zlib --enable-zip --enable-inline-optimization \
+--disable-debug --disable-rpath --enable-shared --enable-xml --enable-bcmath \
+--enable-shmop --enable-sysvsem --enable-mbregex --enable-mbstring --enable-pcntl \
+--enable-sockets --with-xmlrpc --enable-soap --without-pear --with-gettext \
+--enable-session --with-curl --with-jpeg-dir --with-freetype-dir \
+--enable-opcache --enable-fpm --with-fpm-user=www \
+--with-fpm-group=www --without-gdbm --enable-fast-install --disable-fileinfo  &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+    echo &quot;configure failed ,please check it out!&quot;
+    exit 1
+fi
+#echo &quot;make php-7, please wait for 20 minutes&quot;
+make  &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+    echo &quot;make failed ,please check it out!&quot;
+    exit 1
+fi
+make install &gt;/dev/null 2&gt;&amp;1
+if [ $? -ne 0 ];then
+    echo &quot;install failed ,please check it out!&quot;
+    exit 1
+fi
+##########创建配置文件php.ini##############
+if [ ! -f $SOFTDIR/etc/php.ini ];then
+    cp $BASEDIR/php-7.2.9/php.ini-production $SOFTDIR/php/etc/php.ini
+fi
+#创建配置文件php-fpm.ini
+cd $SOFTDIR/php/etc
+if [ ! -f php-fpm.conf ];then
+    cp php-fpm.conf.default php-fpm.conf
+fi
+#创建配置文件www.conf
+cd php-fpm.d/
+if [ ! -f www.conf ];then
+    cp www.conf.default www.conf
+fi
+#清空配置文件，加入自定义的一些配置
+echo &quot;&quot;&gt;$SOFTDIR/php/etc/php-fpm.d/www.conf
+cat &lt;&lt;EOF &gt;$SOFTDIR/php/etc/php-fpm.d/www.conf
+[www]
+user = www
+group = www
+listen = 127.0.0.1:9000
+pm = dynamic
+pm.max_children = 20
+pm.start_servers=10
+pm.min_spare_servers=10
+pm.max_spare_servers=20
+EOF
+chmod +x $SOFTDIR/php/sbin/php-fpm 
+rm -rf /usr/bin/php-fpm
+cp -a $SOFTDIR/php/sbin/php-fpm  /etc/init.d/
+ln -s /etc/init.d/php-fpm  /usr/bin  
+pkill php-fpm
+/opt/webserver/php/sbin/php-fpm
+echo &quot;------------------Success install php7.2.9--------------------&quot;
+</code></pre><p>php启动脚本</p><pre><code>#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          php-fpm
+# Required-Start:    $remote_fs $network
+# Required-Stop:     $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts php-fpm
+# Description:       starts the PHP FastCGI Process Manager daemon
+### END INIT INFO
+
+prefix=/opt/webserver/php
+exec_prefix=${prefix}
+
+php_fpm_BIN=${exec_prefix}/sbin/php-fpm
+php_fpm_CONF=${prefix}/etc/php-fpm.conf
+php_fpm_PID=${prefix}/var/run/php-fpm.pid
+php_opts=&quot;--fpm-config $php_fpm_CONF --pid $php_fpm_PID&quot;
+wait_for_pid () {
+    try=0
+    while test $try -lt 35 ; do
+
+        case &quot;$1&quot; in
+            &apos;created&apos;)
+            if [ -f &quot;$2&quot; ] ; then
+                try=&apos;&apos;
+                break
+            fi
+            ;;
+            &apos;removed&apos;)
+            if [ ! -f &quot;$2&quot; ] ; then
+                try=&apos;&apos;
+                break
+            fi
+            ;;
+        esac
+        echo -n .
+        try=`expr $try + 1`
+        sleep 1
+    done
+}
+case &quot;$1&quot; in
+    start)
+        echo -n &quot;Starting php-fpm &quot;
+        $php_fpm_BIN --daemonize $php_opts
+        if [ &quot;$?&quot; != 0 ] ; then
+            echo &quot; failed&quot;
+            exit 1
+        fi
+        wait_for_pid created $php_fpm_PID
+
+        if [ -n &quot;$try&quot; ] ; then
+            echo &quot; failed&quot;
+            exit 1
+        else
+            # chmod 777 /tmp/php-fpm.sock
+            echo &quot; done&quot;
+        fi
+    ;;
+    stop)
+        echo -n &quot;Gracefully shutting down php-fpm &quot;
+
+        if [ ! -r $php_fpm_PID ] ; then
+            echo &quot;warning, no pid file found - php-fpm is not running ?&quot;
+            exit 1
+        fi
+        kill -QUIT `cat $php_fpm_PID`
+        wait_for_pid removed $php_fpm_PID
+        if [ -n &quot;$try&quot; ] ; then
+            echo &quot; failed. Use force-quit&quot;
+            exit 1
+        else
+            echo &quot; done&quot;
+        fi
+    ;;
+
+    status)
+        if [ ! -r $php_fpm_PID ] ; then
+            echo &quot;php-fpm is stopped&quot;
+            exit 0
+        fi
+        PID=`cat $php_fpm_PID`
+        if ps -p $PID | grep -q $PID; then
+            echo &quot;php-fpm (pid $PID) is running...&quot;
+        else
+            echo &quot;php-fpm dead but pid file exists&quot;
+        fi
+    ;;
+    force-quit)
+        echo -n &quot;Terminating php-fpm &quot;
+
+        if [ ! -r $php_fpm_PID ] ; then
+            echo &quot;warning, no pid file found - php-fpm is not running ?&quot;
+            exit 1
+        fi
+
+        kill -TERM `cat $php_fpm_PID`
+        wait_for_pid removed $php_fpm_PID
+        if [ -n &quot;$try&quot; ] ; then
+            echo &quot; failed&quot;
+            exit 1
+        else
+            echo &quot; done&quot;
+        fi
+    ;;
+    restart)
+        $0 stop
+        $0 start
+    ;;
+    reload)
+        echo -n &quot;Reload service php-fpm &quot;
+        if [ ! -r $php_fpm_PID ] ; then
+            echo &quot;warning, no pid file found - php-fpm is not running ?&quot;
+            exit 1
+        fi
+        kill -USR2 `cat $php_fpm_PID`
+        echo &quot; done&quot;
+    ;;
+    configtest)
+        $php_fpm_BIN -t
+    ;;
+    *)
+        echo &quot;Usage: $0 {start|stop|force-quit|restart|reload|status|configtest}&quot;
+        exit 1
+    ;;
+
+esac
+</code></pre><p>php启动脚本设置</p><pre><code>#启动脚本放在/etc/init.d下,添加权限
+chmod +x /etc/init.d/php-fpm
+sed -i &apos;s/\r//g&apos; /etc/init.d/php-fpm  
+ln -s /etc/init.d/php-fpm  /usr/bin
+#启动nginx，两种方式启动
+php-fpm start    或者  service php-fpm start 
+</code></pre><p>php的扩展插件安装</p><pre><code>#安装php-redis
+wget https://github.com/phpredis/phpredis/archive/3.1.4.tar.gz
+tar -xf 3.1.4.tar.gz
+cd phpredis-3.1.4
+/opt/webserver/php/bin/phpize
+./configure --with-php-config=/opt/webserver/php/bin/php-config
+make &amp;&amp; make install
+echo  &quot;extension=redis.so&quot; &gt;&gt;/opt/webserver/php/etc/php.ini
+
+#安装yaconf
+wget https://codeload.github.com/laruence/yaconf/zip/master
+unzip master
+cd yaconf-master
+/opt/webserver/php/bin/phpize
+./configure --with-php-config=/opt/webserver/php/bin/php-config
+make &amp;&amp; make install
+echo  &quot;extension=yaconf.so&quot; &gt;&gt;/opt/webserver/php/etc/php.ini
+
+#安装apcu
+wget https://codeload.github.com/krakjoe/apcu/zip/master
+unzip master
+apcu-master
+/opt/webserver/php/bin/phpize
+./configure --with-php-config=/opt/webserver/php/bin/php-config
+make &amp;&amp; make install
+
+vim /opt/webserver/php/etc/php.ini
+    extension=apcu.so
+    # 开启APC
+    apc.enabled=1
+    # 分配给APC的内存
+    apc.shm_size=32M
+    # 缓存条目允许在婚宠去内逗留的秒数，0表示永久，建议值为7200~86400
+    apc.ttl=7200
+    # 是否为CLI版本启用APC功能，仅用于测试和调试目的才开启此选项。
+    apc.enable_cli=1
+</code></pre><p>安装mysql5.7</p><p>安装脚本</p><pre><code>#!/bin/bash
+BASEDIR=/opt/src 
+SOFTDIR=/opt/webserver
+MYSQL_DATA_PAHT=/home/data/mysql 
+#添加mysql用户
+if [ &apos;grep &quot;mysql&quot; /etc/passwd | wc -l&apos; ]; then
+    groupadd -r mysql &gt;/dev/null 2&gt;&amp;1
+    useradd -r -s /sbin/nologin -M -g mysql mysql &gt;/dev/null 2&gt;&amp;1
+fi
+#判断安装目录是否存在
+if [ ! -d $BASEDIR ];then
+    mkdir -p $BASEDIR
+fi
+if [ ! -d $SOFTDIR ];then
+    mkdir -p $SOFTDIR
+fi
+#删除原来安装的目录，重新安装
+if [  -d  $MYSQL_DATA_PAHT ];then
+    rm  -rf $MYSQL_DATA_PAHT/*  
+fi
+#删除曾经安装的mysqld的启动文件
+if [ -f /usr/bin/mysqld ];then
+    rm -rf /usr/bin/mysqld 
+fi 
+#删除默认安装的mysql配置文件
+if [ -f /etc/my.cnf ] ;then
+    rm -rf /etc/my.cnf
+fi 
+if [ -f /etc/init.d/mysqld ] ;then
+    rm -rf /etc/init.d/mysqld
+fi 
+mkdir -p $MYSQL_DATA_PAHT
+chown -R mysql:mysql $MYSQL_DATA_PAHT
+cd $BASEDIR
+#判断安装的tar包是否存在，不存在则下载
+if [ ! -f mysql-5.7.23-linux-glibc2.12-x86_64.tar ];then
+    wget https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.23-linux-glibc2.12-x86_64.tar  &gt;/dev/null 2&gt;&amp;1
+    if [  $? -ne 0 ];then
+        echo &quot;Downloads mysql failed, please check out ...&quot;
+        exit 1
+    fi   
+fi    
+#解压文件，并放置到指定的目录
+tar -xf mysql-5.7.23-linux-glibc2.12-x86_64.tar &gt;/dev/null 2&gt;&amp;1
+if [  $? -ne 0 ];then
+    echo &quot;解压mysql-5.7.23-linux-glibc2.12-x86_64.tar失败 &quot;
+    exit 1
+fi
+tar -xf mysql-5.7.23-linux-glibc2.12-x86_64.tar.gz  &gt;/dev/null 2&gt;&amp;1
+if [  $? -ne 0 ];then
+    echo &quot;解压mysql-5.7.23-linux-glibc2.12-x86_64.tar.gz失败 &quot;
+    exit 1
+fi
+if [ -d $SOFTDIR/mysql ];then
+    rm -rf $SOFTDIR/mysql
+fi
+mv mysql-5.7.23-linux-glibc2.12-x86_64 $SOFTDIR/mysql/ 
+source  /etc/profile &gt;/dev/null 2&gt;&amp;1
+cat &lt;&lt; EOF &gt; /etc/my.cnf
+[client]
+socket=$SOFTDIR/mysql/mysql.sock
+[mysqld]
+user=mysql
+basedir=$SOFTDIR/mysql/
+datadir=$MYSQL_DATA_PAHT
+socket=$SOFTDIR/mysql/mysql.sock
+pid-file=$SOFTDIR/mysql/mysqld.pid
+log-error=$SOFTDIR/mysql/mysql.err
+log-bin=mysql-bin
+server-id=1
+EOF
+cp $SOFTDIR/mysql/support-files/mysql.server /etc/init.d/mysqld  
+chmod +x /etc/init.d/mysqld
+ln -s /etc/init.d/mysqld /usr/bin/
+rm -rf /usr/bin/mysql
+ln -s $SOFTDIR/mysql/bin/mysql /usr/bin/
+touch $SOFTDIR/mysql/mysql.err 
+chown -R mysql:mysql $SOFTDIR/mysql
+$SOFTDIR/mysql/bin/mysqld --initialize  --user=mysql --basedir=$SOFTDIR/mysql --datadir=$MYSQL_DATA_PAHT  --explicit_defaults_for_timestamp &gt;/dev/null 2&gt;&amp;1
+#/opt/webserver/mysql/bin/mysqld --initialize --user=mysql --basedir=/opt/webserver/mysql --datadir=/home/data/mysql --explicit_defaults_for_timestamp
+if [  $? -ne 0 ];then
+    echo &quot;初始化失败....&quot;
+    exit 1
+fi
+service mysqld start  &gt;/dev/null 2&gt;&amp;1
+if [  $? -ne 0 ];then
+    echo &quot;mysql 启动失败....&quot;
+    exit 1
+fi
+#查看默认mysql登陆密码
+mysqlpd=`grep password $SOFTDIR/mysql/mysql.err |awk -F &quot;root@localhost: &quot; &apos;{print $2}&apos;`
+echo &quot;修改初始化密码为123456&quot;
+mysql -uroot -p$mysqlpd  -e &quot;set password=password(&apos;123456&apos;) &quot;  --connect-expired-password   &gt;/dev/null 2&gt;&amp;1
+echo &quot;#################yes mysql install with password : 123456  ###########################&quot;
+</code></pre><p>mysql备份脚本</p><pre><code>#!/bin/bash
+#按天存放备份的文件，每天整点备份存放到当天的目录里
+USER=root
+export password=123qwe
+back_path=/home/data/mysql_backup
+date=`date +%Y%m%d`
+filename=`date +%Y%m%d-%H`
+mkdir -p $back_path/$date 
+# mysqldump -u$USER -p$password -A &gt; $back_path/$date/$filename.sql
+/opt/webserver/mysql/bin/mysqldump  -u$USER -p$password -A --opt -F --single-transaction &gt; $back_path/$date/$filename.sql 
+</code></pre><p>mysql备份数据定时删除脚本</p><pre><code>#!/bin/bash
+#按目录的时间定时删除7天前的备份，每天定时执行一次
+back_path=/home/data/mysql_backup
+cd $back_path
+
+current_date=`date +%Y%m%d`
+current_date_stamp=`date -d &quot;$current_date&quot; +%s`
+
+dele_date_stamp=$(($current_date_stamp-604800))
+for  filename in  `ls $back_path `;
+do
+    file_time_stamp=`date -d &quot;$filename&quot; +%s`
+    if [ $file_time_stamp -lt $dele_date_stamp ] ; then
+        rm -rf $back_path/$filename
+        echo &quot;delete $filename&quot;
+    fi
+done
+</code></pre></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>打赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/./images/w.jpg" alt="chen 微信支付"><p>微信支付</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/./images/a.jpg" alt="chen 支付宝"><p>支付宝</p></div></div></div></div><footer class="post-footer"><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/10/23/abbix安装步骤/" rel="next" title="zabbix的安装步骤："><i class="fa fa-chevron-left"></i> zabbix的安装步骤：</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/10/23/mysql备份脚本/" rel="prev" title="mysql备份脚本">mysql备份脚本 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zODMwMS8xNDgyOQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><section class="site-overview-wrap sidebar-panel sidebar-panel-active"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">chen</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">37</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">12</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">10</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://docs.mongodb.com/" title="MongoDB官方文档" target="_blank">MongoDB官方文档</a></li><li class="links-of-blogroll-item"><a href="http://www.runoob.com/python3/python3-tutorial.html" title="Python3菜鸟教程" target="_blank">Python3菜鸟教程</a></li><li class="links-of-blogroll-item"><a href="http://cloudstack-installation.readthedocs.io/zh_CN/latest/qig.html#overview" title="Cloudstack4.12教程" target="_blank">Cloudstack4.12教程</a></li><li class="links-of-blogroll-item"><a href="https://www.zabbix.com/documentation/3.4/zh/manual" title="Zabbix官方文档" target="_blank">Zabbix官方文档</a></li><li class="links-of-blogroll-item"><a href="https://heroiclee.github.io/" title="老李博客" target="_blank">老李博客</a></li></ul></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=33248189&auto=1&height=66"></iframe></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2018</span> <span class="with-love" id="animate"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">chen</span></div>#<div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div><span class="post-meta-divider">|</span><div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i> 访问用户： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人 </span>#<div class="powered-by"></div><span class="site-uv"><i class="fa fa-eye"></i> 访问次数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次 </span><span class="site-pv"><i class="fa fa-pencil"></i> 博客全站共： <span class="post-count">59.3k</span> 字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&(n=e.createElement(t),n.src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var t=$("#local-search-input");t.attr("autocapitalize","none"),t.attr("autocorrect","off"),t.focus()}var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(t){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")},searchFunc=function(t,e,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center"),$.ajax({url:t,dataType:isXml?"xml":"json",async:!0,success:function(t){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var n=isXml?$("entry",t).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get():t,r=document.getElementById(e),s=document.getElementById(o),a=function(){var t=r.value.trim().toLowerCase(),e=t.split(/[\s\-]+/);e.length>1&&e.push(t);var o=[];if(t.length>0&&n.forEach(function(n){function r(e,o,n,r){for(var s=r[r.length-1],a=s.position,i=s.word,l=[],h=0;a+i.length<=n&&0!=r.length;){i===t&&h++,l.push({position:a,length:i.length});var p=a+i.length;for(r.pop();0!=r.length&&(s=r[r.length-1],a=s.position,i=s.word,p>a);)r.pop()}return c+=h,{hits:l,start:o,end:n,searchTextCount:h}}function s(t,e){var o="",n=e.start;return e.hits.forEach(function(e){o+=t.substring(n,e.position);var r=e.position+e.length;o+='<b class="search-keyword">'+t.substring(e.position,r)+"</b>",n=r}),o+=t.substring(n,e.end)}var a=!1,i=0,c=0,l=n.title.trim(),h=l.toLowerCase(),p=n.content.trim().replace(/<[^>]+>/g,""),u=p.toLowerCase(),f=decodeURIComponent(n.url),d=[],g=[];if(""!=l&&(e.forEach(function(t){function e(t,e,o){var n=t.length;if(0===n)return[];var r=0,s=[],a=[];for(o||(e=e.toLowerCase(),t=t.toLowerCase());(s=e.indexOf(t,r))>-1;)a.push({position:s,word:t}),r=s+n;return a}d=d.concat(e(t,h,!1)),g=g.concat(e(t,u,!1))}),(d.length>0||g.length>0)&&(a=!0,i=d.length+g.length)),a){[d,g].forEach(function(t){t.sort(function(t,e){return e.position!==t.position?e.position-t.position:t.word.length-e.word.length})});var v=[];0!=d.length&&v.push(r(l,0,l.length,d));for(var $=[];0!=g.length;){var C=g[g.length-1],m=C.position,x=C.word,w=m-20,y=m+80;0>w&&(w=0),y<m+x.length&&(y=m+x.length),y>p.length&&(y=p.length),$.push(r(p,w,y,g))}$.sort(function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hits.length!==e.hits.length?e.hits.length-t.hits.length:t.start-e.start});var T=parseInt("1");T>=0&&($=$.slice(0,T));var b="";b+=0!=v.length?"<li><a href='"+f+"' class='search-result-title'>"+s(l,v[0])+"</a>":"<li><a href='"+f+"' class='search-result-title'>"+l+"</a>",$.forEach(function(t){b+="<a href='"+f+'\'><p class="search-result">'+s(p,t)+"...</p></a>"}),b+="</li>",o.push({item:b,searchTextCount:c,hitCount:i,id:o.length})}}),1===e.length&&""===e[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort(function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hitCount!==e.hitCount?e.hitCount-t.hitCount:e.id-t.id});var a='<ul class="search-result-list">';o.forEach(function(t){a+=t.item}),a+="</ul>",s.innerHTML=a}};r.addEventListener("input",a),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click(function(t){t.stopPropagation(),isfetched===!1?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(onPopupClose),$(".popup").click(function(t){t.stopPropagation()}),$(document).on("keyup",function(t){var e=27===t.which&&$(".search-popup").is(":visible");e&&onPopupClose()})</script><script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/love.js"></script></body></html><!-- rebuild by neat -->

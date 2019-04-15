@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.python100.com/2018/07/24/hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E8%AE%BE%E8%AE%A1/</loc>
+    
+    <lastmod>2019-04-15T08:20:00.591Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.python100.com/2019/04/15/hexo%E5%8A%A0%E5%AF%86%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</loc>
     
     <lastmod>2019-04-15T07:01:02.158Z</lastmod>
@@ -194,13 +201,6 @@
     <loc>http://www.python100.com/About/index.html</loc>
     
     <lastmod>2018-07-26T06:43:50.284Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.python100.com/2018/07/24/hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E8%AE%BE%E8%AE%A1/</loc>
-    
-    <lastmod>2018-07-24T10:42:04.049Z</lastmod>
     
   </url>
   
